@@ -5,8 +5,8 @@ const getLocaleStorageFormData = JSON.parse(
   localStorage.getItem(LOCALE_STORAGE_FORM_KEY)
 );
 console.log(getLocaleStorageFormData);
-let email = getLocaleStorageFormData.email || '';
-let message = getLocaleStorageFormData.message || '';
+let email;
+let message;
 
 setValuesToForm(getLocaleStorageFormData);
 
@@ -35,12 +35,14 @@ function submitHandler(evt) {
 
 function setValuesToForm(data) {
   try {
-    getForm.elements.email.value = data.email;
+    email = getLocaleStorageFormData.email;
+    getForm.elements.email.value = email;
   } catch (error) {
     console.error('Get state error: ', error.message);
   }
   try {
-    getForm.elements.message.textContent = data.message;
+    message = getLocaleStorageFormData.message;
+    getForm.elements.message.textContent = message;
   } catch (error) {
     console.error('Get state error: ', error.message);
   }
